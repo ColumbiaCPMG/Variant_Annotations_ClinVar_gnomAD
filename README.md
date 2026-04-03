@@ -22,7 +22,7 @@ Alternatively, the pipeline can automatically download this file using the --dow
 
 From the main project folder use the following command to run the pipeline:
 ```
-python3 scripts/annotate_variants.py --input <input_file> --genome hg19
+python3 scripts/variant_annotation_CLI.py --input <input_file> --genome hg19
 ```
 Required arguments:  
 --input: Name of the input file located in the input_files/ directory  
