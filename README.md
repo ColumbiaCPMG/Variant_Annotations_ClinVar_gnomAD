@@ -22,18 +22,6 @@ Alternatively, the pipeline can automatically download this file using the --dow
 
 From the main project folder use the following command to run the pipeline:
 ```
-python3 clinvar_ref_file/variant_summary.txt —input <input_file> --genome hg19
-```
- 
-* These are the required arguments. You can choose between genomes hg17 and hg19.
-* By default the results file will have the same name as the input file with “_results” suffix at the end in the results folder.
-* The sleep timer between API queries is 7.0 seconds which is suggested as a smaller timer might send too many requested and get the IP blocked.
-* Also, use —download-clinvar the first time you run it, to download the latest clinvar file. Please only use it when you want to update the clinvar files for subsequent analysis.
- 
-## Usage
- 
-From the main project directory, run the pipeline using:
-``` 
 python3 scripts/annotate_variants.py --input <input_file> --genome hg19
 ```
 Required arguments:  
@@ -42,10 +30,11 @@ Required arguments:
 
 Optional arguments:  
 --download-clinvar: Downloads the latest ClinVar variant summary file before running the pipeline --sleep: Time delay (in seconds) between API requests (default: 7.0)
- 
-## Notes on Output
 
-Output files are automatically saved in the results/ directory
+* By default the results file will have the same name as the input file with “_results” suffix at the end in the results folder.
+* The sleep timer between API queries is 7.0 seconds which is suggested as a smaller timer might send too many requested and get the IP blocked.
+* Also, use —download-clinvar the first time you run it, to download the latest clinvar file. After initial run only use it when you want to update the clinvar files for subsequent analysis.
+* Output files are automatically saved in the results/ directory.
 The output filename is derived from the input filename with a _results.csv suffix
 Example:
 ```
