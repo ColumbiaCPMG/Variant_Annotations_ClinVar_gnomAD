@@ -6,17 +6,34 @@ The pipeline annotates a list of genetic variants with:
  
 ## Setup
 
-Clone the repository locally. The project primarily relies on standard Python libraries along with a few common external dependencies.
+Clone the repository locally and navigate into the project directory:
+```
+git clone git@github.com:ColumbiaCPMG/Variant_Annotations_ClinVar_gnomAD.git
+cd Variant_Annotation_ClinVar_gnomAD
+```
+
+The project primarily relies on standard Python libraries along with a few common external dependencies.
 If you encounter missing modules or installation issues, you can create a dedicated environment using the provided environment.yml file:
  
 ```
 conda env create -f environment.yml
-conda activate <environment_name>
+conda activate variant-annotation
 ```
 ## ClinVar Reference File
 The ClinVar variant summary file can be downloaded from the official NCBI FTP source:
 https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz
-Alternatively, the pipeline can automatically download this file using the --download-clinvar flag (see Usage section).
+
+Alternatively, the pipeline can automatically download this file using the `--download-clinvar` flag (see Usage section).
+
+Note: The script requires following arguments when downloading the ClinVar file. Example:
+```
+python3 scripts/variant_annotation_CLI.py --download-clinvar --genome hg19 --input <input_file>
+```
+If you have already downloaded the file and/or you do not want to download it again, simply use:
+```
+python3 scripts/variant_annotation_CLI.py --genome hg19 --input <input_file>
+```
+
  
 ## Usage
 
@@ -26,7 +43,11 @@ python3 scripts/variant_annotation_CLI.py --input <input_file> --genome hg19
 ```
 Required arguments:  
 --input: Name of the input file located in the input_files/ directory  
---genome: Reference genome build (hg19/GRCh37 or hg38/GRCh38)
+--genome: Reference Genome Build
+
+The genome input is case insensitive and can handle the following values:
+* **hg19 or GRCh37**
+* **hg38 or GRCh38**
 
 Optional arguments:  
 --download-clinvar: Downloads the latest ClinVar variant summary file before running the pipeline --sleep: Time delay (in seconds) between API requests (default: 7.0)
